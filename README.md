@@ -1,19 +1,28 @@
-# Validador-Formal
+# Validador Formal
 
-Validador Formal em 3 níveis - implementando 3 reconhecedores formais para cada nível da hierarquia de Chomsky:
+Validador Formal em 3 níveis, implementando 3 reconhecedores formais para cada nível da hierarquia de Chomsky.
 
-Nível  |  Linguagem          | Modelo   |   Problema
-_______| ____________________| _________| ______________________________________________
-LR     |  Regular            | DFA      |   Formato de CPF (ddd.ddd.ddd-dd)
-LLC    |  Livre de Contexto  | PDA      |   Parênteses/colchetes/chaves balanceadas
-R      |  Recursiva          | MT       |   Cópia de cadeia w#w onde W E {0,1}*
+## Níveis implementados
 
-#Pré requisitos:
+| Nível | Linguagem | Modelo | Problema |
+|--------|-----------|---------|-----------|
+| LR | Regular | DFA | Formato de CPF (ddd.ddd.ddd-dd) |
+| LLC | Livre de Contexto | PDA | Parênteses/colchetes/chaves balanceadas |
+| R | Recursiva | MT | Cópia de cadeia `w#w`, onde `w ∈ {0,1}*` |
 
-Arquivo "requirements.txt" -> pip install -r requirements.txt (não é obrigatório a execução)
+## Pré-requisitos
 
-#Estrutura do projeto
+Arquivo `requirements.txt`:
 
+```bash
+pip install -r requirements.txt
+```
+
+*(A instalação não é obrigatória para execução dos testes básicos.)*
+
+## Estrutura do projeto
+
+```text
 projeto/
 ├── README.md
 ├── requirements.txt
@@ -21,7 +30,7 @@ projeto/
 ├── src/
 │   ├── regular.py                   # reconhecedor LR (DFA - CPF)
 │   ├── livre_contexto.py            # reconhecedor LLC (PDA - parênteses)
-│   └── recursiva.py                 # reconhecedor R  (MT  - w#w)
+│   └── recursiva.py                 # reconhecedor R (MT - w#w)
 ├── testes/
 │   ├── testes_regular.txt
 │   ├── testes_livre_contexto.txt
@@ -30,41 +39,57 @@ projeto/
 │   └── (diagramas PNG/SVG/PDF aqui)
 └── relatorio/
     └── relatorio.pdf
+```
 
-# Como executar
+## Como executar
 
-Bateria completa (todos os 3 reconhecedores)
+### Bateria completa (todos os 3 reconhecedores)
 
-bash -> python testes.py
+```bash
+python testes.py
+```
 
-Reconhecedor individual com passo a passo de execução dos modelos
+### Reconhecedores individuais
 
-#LR - CPF
-python src/regular.py "565.646.646.88"
+#### LR - CPF
+
+```bash
+python src/regular.py "565.646.646-88"
 python src/regular.py "52.15.15-54"
+```
 
-#LCC - Parênteses
+#### LLC - Parênteses balanceados
+
+```bash
 python src/livre_contexto.py "((x+y)*z)"
-python scr/livre_contexto.py "((aa+b)"
+python src/livre_contexto.py "((aa+b)"
+```
 
-#R - w#w
+#### R - Cadeia w#w
+
+```bash
 python src/recursiva.py "101#101"
 python src/recursiva.py "101#100"
+```
 
-Sem argumento, cada script roda seu próprio modelo (cadeia aceita + cadeia rejeitada + bateria interna):
+### Execução sem argumentos
 
+Sem argumentos, cada script executa:
+
+- Uma cadeia aceita
+- Uma cadeia rejeitada
+- Uma bateria interna de testes
+
+```bash
 python src/regular.py
 python src/livre_contexto.py
 python src/recursiva.py
+```
 
+## Definição de "passo"
 
-Definição de "passo" de acordo com as especificações do projeto:
-
-Modelo | Passo
-_______| ________________________________________________________
-DFA    | Cada leitura de símbolo com mudança de estado
-PDA    | Cada transição + cada empilhamento/desempilhameto
-MT     | Cada movimento da cabeça (leitura + escrita + deslocamento)
-
-
-    
+| Modelo | Passo |
+|---------|--------|
+| DFA | Cada leitura de símbolo com mudança de estado |
+| PDA | Cada transição + cada empilhamento/desempilhamento |
+| MT | Cada movimento da cabeça (leitura + escrita + deslocamento) |
