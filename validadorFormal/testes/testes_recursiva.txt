@@ -1,0 +1,13 @@
+# Testes - Linguagem Recursiva (w#w)
+# Formato: cadeia<TAB>ACEITA  ou  cadeia<TAB>REJEITA
+# Use <vazio> para a cadeia vazia
+
+# --- Cadeias ACEITAS ---
+#	ACEITA
+0#0	ACEITA
+101#101	ACEITA
+
+# --- Cadeias REJEITADAS ---
+0#1	REJEITA
+101#100	REJEITA
+01#011	REJEITA

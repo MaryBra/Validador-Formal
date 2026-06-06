@@ -1,0 +1,13 @@
+# Testes - Linguagem Regular (CPF)
+# Formato: cadeia<TAB>ACEITA  ou  cadeia<TAB>REJEITA
+# Linhas com # são comentários
+
+# --- Cadeias ACEITAS ---
+123.456.789-00	ACEITA
+000.000.000-00	ACEITA
+987.654.321-99	ACEITA
+
+# --- Cadeias REJEITADAS ---
+12345678900	REJEITA
+12.345.678-90	REJEITA
+123.456.789.00	REJEITA

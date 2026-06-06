@@ -1,0 +1,12 @@
+# Testes - Linguagem Livre de Contexto (Parênteses Balanceados)
+# Formato: cadeia<TAB>ACEITA  ou  cadeia<TAB>REJEITA
+
+# --- Cadeias ACEITAS ---
+(a+b)	ACEITA
+((x+y)*z)	ACEITA
+{[(x+y)]}	ACEITA
+
+# --- Cadeias REJEITADAS ---
+((a+b)	REJEITA
+[a+b))	REJEITA
+{(a+b]}	REJEITA
