@@ -5,10 +5,10 @@ Validador Formal em 3 níveis, implementando 3 reconhecedores formais para cada 
 ## Níveis implementados
 
 | Nível | Linguagem | Modelo | Problema |
-|--------|-----------|---------|-----------|
-| LR | Regular | DFA | Formato de CPF (ddd.ddd.ddd-dd) |
-| LLC | Livre de Contexto | PDA | Parênteses/colchetes/chaves balanceadas |
-| R | Recursiva | MT | Cópia de cadeia `w#w`, onde `w ∈ {0,1}*` |
+| --- | --- | --- | --- |
+| LR | Regular | DFA | Formato de CPF (`ddd.ddd.ddd-dd`) |
+| LLC | Livre de Contexto | PDA | Parênteses, colchetes e chaves balanceadas |
+| R | Recursiva | MT | Cópia de cadeia `w#w`, onde `w` pertence a `{0,1}*` |
 
 ## Pré-requisitos
 
@@ -18,7 +18,7 @@ Arquivo `requirements.txt`:
 pip install -r requirements.txt
 ```
 
-*(A instalação não é obrigatória para execução dos testes básicos.)*
+A instalação não é obrigatória para execução dos testes básicos.
 
 ## Estrutura do projeto
 
@@ -29,56 +29,59 @@ projeto/
 ├── testes.py                        # roda a bateria completa
 ├── src/
 │   ├── regular.py                   # reconhecedor LR (DFA - CPF)
-│   ├── livre_contexto.py            # reconhecedor LLC (PDA - parênteses)
+│   ├── livre_contexto.py            # reconhecedor LLC (PDA - delimitadores)
 │   └── recursiva.py                 # reconhecedor R (MT - w#w)
 ├── testes/
 │   ├── testes_regular.txt
 │   ├── testes_livre_contexto.txt
 │   └── testes_recursiva.txt
 ├── diagramas/
-│   └── (diagramas PNG/SVG/PDF aqui)
-└── relatorio/
-    └── relatorio.pdf
+│   ├── dfa_regular.svg
+│   ├── pda_livre_contexto.svg
+│   └── mt_recursiva.svg
+└── relatorio.pdf
 ```
 
 ## Como executar
 
-### Bateria completa (todos os 3 reconhecedores)
+### Bateria completa
+
+Roda os testes dos 3 reconhecedores:
 
 ```bash
 python testes.py
 ```
 
-### Reconhecedores individuais
+## Reconhecedores individuais
 
-#### LR - CPF
+### LR - CPF
 
 ```bash
 python src/regular.py "565.646.646-88"
 python src/regular.py "52.15.15-54"
 ```
 
-#### LLC - Parênteses balanceados
+### LLC - Delimitadores balanceados
 
 ```bash
 python src/livre_contexto.py "((x+y)*z)"
 python src/livre_contexto.py "((aa+b)"
 ```
 
-#### R - Cadeia w#w
+### R - Cadeia w#w
 
 ```bash
 python src/recursiva.py "101#101"
 python src/recursiva.py "101#100"
 ```
 
-### Execução sem argumentos
+## Execução sem argumentos
 
 Sem argumentos, cada script executa:
 
-- Uma cadeia aceita
-- Uma cadeia rejeitada
-- Uma bateria interna de testes
+- uma cadeia aceita;
+- uma cadeia rejeitada;
+- uma bateria interna de testes.
 
 ```bash
 python src/regular.py
@@ -86,10 +89,12 @@ python src/livre_contexto.py
 python src/recursiva.py
 ```
 
-## Definição de "passo"
+## Definição de passo
 
 | Modelo | Passo |
-|---------|--------|
-| DFA | Cada leitura de símbolo com mudança de estado |
-| PDA | Cada transição + cada empilhamento/desempilhamento |
-| MT | Cada movimento da cabeça (leitura + escrita + deslocamento) |
+| --- | --- |
+| DFA | Cada leitura de símbolo da entrada com mudança de estado |
+| PDA | Cada transição do PDA, incluindo empilhamento, desempilhamento ou transição vazia |
+| MT | Cada movimento da cabeça sobre a fita, com leitura, escrita e deslocamento |
+
+O módulo `re` do Python não é usado como reconhecedor principal.
